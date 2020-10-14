@@ -15,5 +15,5 @@ class Candidate:
         self.note = note
 
     def __str__(self):
-        return f"Name: {self.name}, Title: {self.title}, Address: {self.address}, Phone: {self.phone}, E-Mail: {self.email}, Hobbies: {self.hobbies}"
+        return f"Name: {self.name}, Title: {self.title}, Address: {self.address}, Phone: {self.phone}, E-Mail: {self.email}, Hobbies: {self.hobbies}, Education: {self.education}, Experiance: {self.experience}, Note: {self.note}"
 
