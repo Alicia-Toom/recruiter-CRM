@@ -1,4 +1,5 @@
 from candidate import Candidate
+from candidate_database import CandidateDatabase
 from education import Education
 from experience import Experience
 from note import Note
@@ -74,46 +75,41 @@ def print_candidate(candidate):
     print(f"Phone: {candidate.phone}")
     print(f"E - Mail: {candidate.email}")
     print(f"Hobbies: {candidate.hobbies}")
-    print_section_header("Summary")
-    print(f"Summary: {candidate.note.summary}")
-    print_section_header("Education")
-    for education in candidate.education:
-        print(f"Education: {education.name}")
-        print(f"School/University: {education.school}")
-        print(f"Level: {education.level}")
-    print_section_header("Job Experience")
-    for experience in candidate.experience:
-        print(f"Employer: {experience.employer}")
-        print(f"Title: {experience.title}")
-        print(f"Responsibilities: {experience.responsibilities}")
-        print(f"Duration: {experience.duration_years}")
-    print_section_header("Recruiter Notes")
-    print(f"Note: {candidate.note.comment}")
+
+    if candidate.note is not None:
+        print_section_header("Summary")
+        print(f"Summary: {candidate.note.summary}")
+
+    if candidate.education is not None and len(candidate.education) > 0:
+        print_section_header("Education")
+        for education in candidate.education:
+            print(f"Education: {education.name}")
+            print(f"School/University: {education.school}")
+            print(f"Level: {education.level}")
+
+    if candidate.education is not None and len(candidate.education) > 0:
+        print_section_header("Job Experience")
+        for experience in candidate.experience:
+            print(f"Employer: {experience.employer}")
+            print(f"Title: {experience.title}")
+            print(f"Responsibilities: {experience.responsibilities}")
+            print(f"Duration: {experience.duration_years}")
+
+    if candidate.note is not None:
+        print_section_header("Recruiter Notes")
+        print(f"Note: {candidate.note.comment}")
+
+
+def print_candidates(candidates):
+    print_section_header(f"Number of candidates: {len(candidates)}")
+    for candidate in candidates:
+        print(f"Candidate Id: {candidate.id}, Candidate Name: {candidate.name}")
 
 
 def print_section_header(header):
     print("-----------------------------")
     print(f"{header.upper()}")
     print("-----------------------------")
-
-
-def find_candidates(candidates, search_criteria):
-
-    result = []
-    for candidate in candidates:
-        if search_criteria.lower() in candidate.name.lower():
-            result.append(candidate)
-        elif search_criteria.lower() in candidate.title.lower():
-            result.append(candidate)
-
-    return result
-
-
-def list_candidates(candidates):
-    print(f"Number of candidates: {len(candidates)}")
-    if len(candidates) > 0:
-        for candidate in candidates:
-            print(candidate.name)
 
 
 def read_menu_option():
@@ -128,54 +124,31 @@ def read_menu_option():
     return input("Enter your choice: ")
 
 
-def test():
-
-    candidate = Candidate()
-    candidate.name = "Alicia Toomtest"
-    candidate.title = "Python Developer"
-    candidate.address = "Gothenburg, Sweden"
-    candidate.phone = "0722879879"
-    candidate.email = "alicia.chumchai@gmail.com"
-    candidate.hobbies = "Gardening"
-
-    candidate.education = [Education(name="Education", school="School", level="Level"), Education(name="Education2", school="School2", level="Level2")]
-
-    candidate.experience = [Experience(employer="Volvo", title="Python developer", responsibilities="code", duration_years="2018-present")]
-
-    candidate.note = Note()
-    candidate.note.summary = "Gslf9ehdlsdfnjslsleofjfms,"
-    candidate.note.comment = "dki9eufsklwodudndjskwoeifjdk"
-
-    #print_candidate(candidate)
-    candidates = [candidate]
-    find_result = find_candidates(candidates, "toom")
-
-    if len(find_result) > 0:
-        list_candidates(find_result)
-    else:
-        print("No result found")
-    return
-
-
 def main():
-    candidates = []
+    candidate_database = CandidateDatabase()
 
     while True:
         choice = read_menu_option()
         if choice == "1":
             candidate = read_candidate()
-            candidates.append(candidate)
+            candidate_database.add_candidate(candidate)
         elif choice == "2":
-            list_candidates(candidates)
+            candidates = candidate_database.get_candidates()
+            print_candidates(candidates)
         elif choice == "3":
             search_term = input("Please enter candidates name or title: ")
-            find_result = find_candidates(candidates, search_term)
+            find_result = candidate_database.find_candidates(search_term)
             if len(find_result) > 0:
-                list_candidates(find_result)
+                print_candidates(find_result)
             else:
                 print("No Candidate found")
         elif choice == "4":
-            print("TODO View Candidate")
+            candidate_id = input("Enter candidate id: ")
+            candidate = candidate_database.get_candidate(candidate_id)
+            if candidate is not None:
+                print_candidate(candidate)
+            else:
+                print("No Candidate found")
         elif choice == "9":
             break
 

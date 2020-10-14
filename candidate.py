@@ -2,8 +2,9 @@ import random
 
 class Candidate:
 
-    def __init__(self, name="", title="", address="", phone="", email="", hobbies ="", education=[], experience=[], note=None):
+    def __init__(self, id=-1, name="", title="", address="", phone="", email="", hobbies ="", education=[], experience=[], note=None):
 
+        self.id = id
         self.name = name
         self.title = title
         self.address = address
@@ -15,5 +16,5 @@ class Candidate:
         self.note = note
 
     def __str__(self):
-        return f"Name: {self.name}, Title: {self.title}, Address: {self.address}, Phone: {self.phone}, E-Mail: {self.email}, Hobbies: {self.hobbies}, Education: {self.education}, Experiance: {self.experience}, Note: {self.note}"
+        return f"Id: {self.id}, Name: {self.name}, Title: {self.title}, Address: {self.address}, Phone: {self.phone}, E-Mail: {self.email}, Hobbies: {self.hobbies}, Education: {self.education}, Experiance: {self.experience}, Note: {self.note}"
 

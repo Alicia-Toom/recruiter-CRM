@@ -8,7 +8,7 @@ match for a specific jobs.
 
 Basic requirements are:
 
-1. As a user, I want to be able to add candidates to the system.
+1. As a user, I want to be able to add candidates to the system. (Version 1)
         I should be able to add:
          -Candidates id
          -Name
@@ -26,13 +26,13 @@ Basic requirements are:
          -Comment of the person from recruiters
          -Sources of candidates: where is she or he comes from, i.e reference, headhunt, direct apply.
 
-2. As a user, I want to be able to search for the candidates: using name or title of the jobs.
-3. As a user, I want to be able to save the candidates for a specific project names
-4. As a user, I want to be able to change the status of the candidates_: i.e already hired, doing interview etc.
-5. As a user, I want to be able to send a reminder to myself to keep in touch with the candidates
-6. As a user, I want to be able to save an e-mail templat to send to candidates.
-7. As a user, I want to be able to copy or download the file to PDF or doc, having a company logo on the documents.
-8. As a user, I want the document to have the company format.
-9. As a user, I want tobe able to log in
-10. As a user, I want to be able to see data of my current states of data.
+2. As a user, I want to be able to list, search and view candidates: using name or title of the jobs. (Version 1)
+3. As a user, I want to be able to save the candidates for a specific project names (Version 2)
+4. As a user, I want to be able to change the status of the candidates_: i.e already hired, doing interview etc. (Version 2)
+5. As a user, I want to be able to send a reminder to myself to keep in touch with the candidates. (Version 2)
+6. As a user, I want to be able to save an e-mail template to send to candidates. (Version 2)
+7. As a user, I want to be able to copy or download the file to PDF or doc, having a company logo on the documents. (Version 3)
+8. As a user, I want the document to have the company format. (Version 3)
+9. As a user, I want to be able to log in. (Version 3)
+10. As a user, I want to be able to see data of my current candidates and projects in the system. (Version 3)
 
